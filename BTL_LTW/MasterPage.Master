@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="BTL_LTW.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="svg-with-js/js/fontawesome-all.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="css/MassterPageCss.css" rel="stylesheet" />
+<script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="container" style="margin-top: 30px">
+        <div id="header">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="image/bannergiay.jpg" />
+                </div>
+            </div>
+            <nav class="collapse navbar-collapse" id="TopMenu">
+                <ul class="nav navbar-nav">
+                    <li><a href="/HomePage.aspx" class="btn btn-link"><i class="fas fa-home"></i> &nbspTrang chủ</a></li>
+                    &emsp;
+                    <li><a href="/CartPage.aspx" class="btn btn-link"><i class="fab fa-opencart"></i> &nbsp Giỏ hàng (<asp:Label ID="lblCartCount" runat="server" Text="0"></asp:Label>)</a></li>
+                    &emsp;
+                    <li><a href="/AboutPage.aspx" class="btn btn-link"><i class="far fa-address-book"></i> &nbsp Liên hệ</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if (Session["login"] == null || !(bool)Session["login"])
+                        { %>
+                    <li>
+                        <div class="txtUsername">  <i class="far fa-hand-peace"></i> &nbsp Xin chào người lạ</div>
+                    </li>
+                    <li><a href="/RegPage.aspx" class="btn btn-link"><i class="fas fa-user-plus"></i>&nbsp Đăng ký</a></li>
+                    <li><a href="/LoginPage.aspx" class="btn btn-link"><i class="fas fa-sign-in-alt"></i>&nbsp Đăng nhập</a></li>
+                    <%}
+                        else
+                        {%>
+                    <li>
+                        <div class="txtUsername">
+                            <i class="far fa-user"></i>&nbsp Xin chào
+                           <a href="ProfilePage.aspx" > <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></a>
+                        </div>
+                    </li>
+                    <li><a href="/LogoutPage.aspx" class="btn btn-link"><i class="fas fa-sign-out-alt"></i>&nbsp Đăng xuất</a></li>
+                    <%} %>
+                </ul>
+            </nav>
+
+
+
+
+
+
+            <%-- <navclass="navbar navbar-expand-lg navbar-light bg-light">
+                <ul>
+                    
+                   
+                </ul>
+            </nav>--%>
+        </div>
+        <div id="body" style="min-height: 100%">
+            <div class="row">
+                <asp:ContentPlaceHolder ID="content" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <ul>
+                        <li><a href="#">Chính sách đổi - trả hàng</a></li>
+                        <li><a href="#">Giao hàng & Thanh toán</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                        <li><a href="#">Giới thiệu cửa hàng</a></li>
+                        <li><a href="#">Gửi góp ý và phản ánh về hòm thư</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                        <li><a href="#">Gọi điện giao hàng và tư vấn: 19001010</a></li>
+                        <li><a href="#">Liên hệ Facebook hoặc Zalo</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-12" id="TextFooter">QSSshoes.com</div>
+                <%--<div class="col-md-12" style="text-align:center;">Số người đang online: <%=(int)Application["onlineCounter"] %></div>--%>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
